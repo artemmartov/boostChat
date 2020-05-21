@@ -1,4 +1,6 @@
-import React, { Component } from "react";
+import React from "react";
+import { withFormik } from "formik";
+
 import { Form, Input } from "antd";
 import { ExclamationCircleTwoTone } from "@ant-design/icons";
 import { Link } from "react-router-dom";
@@ -19,58 +21,312 @@ const tailLayout = {
   }
 };
 
-export default class RegisterForm extends Component {
-  render() {
-    const success = true;
-    return (
-      <div>
-        <div className="auth__top">
-          <h2>Регистрация</h2>
-          <p>Для входа в чат, вам необходимо зарегистрироваться</p>
-        </div>
-        <WhiteBlock>
-          {success ? (
-            <Form {...layout} name="basic">
-              <Form.Item label="e-mail" name="e-mail">
-                <Input placeholder="E-MAIL" />
-              </Form.Item>
+// // const initialValues = {
+// //   name: "",
+// //   email: ""
+// //   //   password: ""
+// // };
 
-              <Form.Item label="Username" name="username">
-                <Input placeholder="Ваше имя" />
-              </Form.Item>
+// // const onSubmit = values => {
+// //   console.log("1111", values);
+// // };
 
-              <Form.Item label="Password" name="password">
-                <Input.Password placeholder="Пароль" />
-              </Form.Item>
+// // const validate = values => {
+// //   let errors = {};
 
-              <Form.Item label="Повторите пароль" name="password">
-                <Input.Password placeholder="Повторите пароль" />
-              </Form.Item>
+// //   if (!values.name) {
+// //     errors.name = "Required";
+// //   }
 
-              <Form.Item {...tailLayout}>
-                <Button className="button__large" type="primary" size="large">
-                  Зарегистрироваться
-                </Button>
-              </Form.Item>
-              <Form.Item>
-                <Link className="auth__register-link" to="/login">
-                  Войти в аккаунт
-                </Link>
-              </Form.Item>
-            </Form>
-          ) : (
-            <div className="auth__success-block">
-              <div>
-                <ExclamationCircleTwoTone style={{ fontSize: "50px"}}/>
-              </div>
-              <h2>Подтвердите ваш аккаунт</h2>
-              <p>
-                На почту отправлено письмо с ссылкой на подтверждение аккаунта.
-              </p>
-            </div>
-          )}
-        </WhiteBlock>
+// //   if (!values.email) {
+// //     errors.email = "Required";
+// //   } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
+// //     errors.email = "Invalid email address";
+// //   }
+// //   return errors;
+// // };
+
+// // const validationSchema = Yup.object({
+// //   name: Yup.string().required("Required"),
+// //   email: Yup.string()
+// //     .email("Invalid email format")
+// //     .required("Required")
+// // });
+
+// const MyForm = props => {
+//   const {
+//     values,
+//     touched,
+//     errors,
+//     handleChange,
+//     handleBlur,
+//     handleSubmit
+//   } = props;
+//   //   const formik = useFormik({
+//   //     initialValues,
+//   //     onSubmit,
+//   //     validationSchema
+//   //     // validate
+//   //   });
+//   const success = true;
+
+//   return (
+//     <div>
+//       <div className="auth__top">
+//         <h2>Регистрация</h2>
+//         <p>Для входа в чат, вам необходимо зарегистрироваться</p>
+//       </div>
+//       <WhiteBlock>
+//         {success ? (
+//           <Form {...layout} onSubmit={handleSubmit}>
+//             <Form.Item htmlFor="email" name="email">
+//               <Input
+//                 placeholder="E-MAIL"
+//                 id="email"
+//                 type="email"
+//                 name="email"
+//                 value={values.email}
+//               />
+//             </Form.Item>
+
+//             <Form.Item label="name" name="name">
+//               <Input id="name" name="name" type="text" placeholder="Ваше имя" />
+//             </Form.Item>
+
+//             <Form.Item label="password" name="password">
+//               <Input.Password
+//                 id="password"
+//                 name="password"
+//                 type="text"
+//                 placeholder="Пароль"
+//               />
+//             </Form.Item>
+
+//             <Form.Item label="Повторите пароль">
+//               <Input.Password placeholder="Повторите пароль" />
+//             </Form.Item>
+
+//             <Form.Item {...tailLayout}>
+//               <Button
+//                 type="submit"
+//                 className="button__large"
+//                 type="primary"
+//                 size="large"
+//               >
+//                 Submit
+//               </Button>
+//             </Form.Item>
+//             <Form.Item>
+//               <Link className="auth__register-link" to="/login">
+//                 Войти в аккаунт
+//               </Link>
+//             </Form.Item>
+//           </Form>
+//         ) : (
+//           <div className="auth__success-block">
+//             <div>
+//               <ExclamationCircleTwoTone style={{ fontSize: "50px" }} />
+//             </div>
+//             <h2>Подтвердите ваш аккаунт</h2>
+//             <p>
+//               На почту отправлено письмо с ссылкой на подтверждение аккаунта.
+//             </p>
+//           </div>
+//         )}
+//       </WhiteBlock>
+
+//       {/* <form >
+//           <label htmlFor="email">Email</label>
+//           <Field
+//             type="email"
+//             name="email"
+//             id="email"
+//             //   onChange={formik.handleChange}
+//             //   onBlur={formik.handleBlur}
+//             //   value={formik.values.email}
+//             // {...formik.getFieldProps("email")}
+//           />
+//           {formik.touched.email && formik.errors.email ? (
+//             <div>{formik.errors.email}</div>
+//           ) : null}
+//           <label htmlFor="name">Name</label>
+//           <Field
+//             type="text"
+//             name="name"
+//             id="name"
+//             //   onChange={formik.handleChange}
+//             //   onBlur={formik.handleBlur}
+//             //   value={formik.values.name}
+//             // {...formik.getFieldProps("name")}
+//           />
+//           {formik.touched.name && formik.errors.name ? (
+//             <div>{formik.errors.name}</div>
+//           ) : null}
+//           <button>TTTT</button>
+//         <Formik>
+//       </Formik> */}
+//     </div>
+//   );
+// };
+
+// export default MyForm;
+
+const MyForm = props => {
+  const {
+    values,
+    touched,
+    errors,
+    handleChange,
+    handleBlur,
+	handleSubmit,
+	isValid,
+	dirty
+  } = props;
+  const success = true;
+  return (
+    <div>
+      <div className="auth__top">
+        <h2>Регистрация</h2>
+        <p>Для входа в чат, вам необходимо зарегистрироваться</p>
       </div>
-    );
-  }
-}
+      <WhiteBlock>
+        {success ? (
+          <Form {...layout} onSubmit={handleSubmit}>
+            <Form.Item
+              validateStatus={
+                !touched.email ? "" : errors.email ? "error" : "Success"
+			  }
+			  help={ !touched.email ? null : errors.email }
+            >
+              <Input
+                onChange={handleChange}
+                onBlur={handleBlur}
+                id="email"
+                name="email"
+                type="mail"
+                placeholder="email"
+              />
+            </Form.Item>
+
+            <Form.Item>
+              <Input
+                id="name"
+                name="name"
+                type="text"
+                placeholder="Ваше имя"
+                value={values.name}
+              />
+            </Form.Item>
+ 
+            <Form.Item
+              validateStatus={
+                !touched.password ? "" : errors.password ? "error" : "Success"
+			  }
+			  help={ !touched.password ? null : errors.password }
+            >
+              <Input.Password
+                onChange={handleChange}
+                onBlur={handleBlur}
+                id="password"
+                name="password"
+                type="password"
+                placeholder="Пароль"
+              />
+            </Form.Item>
+
+            <Form.Item>
+              <Input.Password
+                onChange={handleChange}
+                onBlur={handleBlur}
+                id="passwordAgain"
+                name="passwordAgain"
+                type="password"
+                placeholder="Повторите пароль"
+              />
+            </Form.Item>
+
+            <Form.Item {...tailLayout}>
+				{!isValid && <span>Ошибка!</span>}
+              <Button
+                onClick={handleSubmit}
+                type="submit"
+                className="button__large"
+                type="primary"
+                size="large"
+              >
+                Submit
+              </Button>
+            </Form.Item>
+            <Form.Item>
+              <Link className="auth__register-link" to="/login">
+                Войти в аккаунт
+              </Link>
+            </Form.Item>
+          </Form>
+        ) : (
+          <div className="auth__success-block">
+            <div>
+              <ExclamationCircleTwoTone style={{ fontSize: "50px" }} />
+            </div>
+            <h2>Подтвердите ваш аккаунт</h2>
+            <p>
+              На почту отправлено письмо с ссылкой на подтверждение аккаунта.
+            </p>
+          </div>
+        )}
+      </WhiteBlock>
+      {/* <form onSubmit={handleSubmit}>
+		<input
+		  type="text"
+		  onChange={handleChange}
+		  onBlur={handleBlur}
+		  value={values.name}
+		  name="name"
+		/>
+		{errors.name && touched.name && <div id="feedback">{errors.name}</div>}
+		<button type="submit">Submit</button>
+	  </form> */}
+    </div>
+  );
+};
+
+const RegisterForm = withFormik({
+  mapPropsToValues: () => ({ name: "asdas" }),
+
+  // Custom sync validation
+  validate: values => {
+    const errors = {};
+    console.log("values", values);
+
+    if (!values.email) {
+      errors.email = "Required";
+    } else if (
+      !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)
+    ) {
+      errors.email = "Invalid email address";
+    }
+
+    if (!values.password) {
+      errors.password = "Required";
+    } else if (!/^[a-zA-Z0-9]+$/i.test(values.password)) {
+      
+
+      console.log("ОШИБКА");
+
+	  errors.password = "Пароль должен содержать одну заглавную букву и цифру";
+	  console.log('BAD', errors );
+    }
+    return errors;
+  },
+
+  handleSubmit: (values, { setSubmitting }) => {
+    setTimeout(() => {
+      alert(JSON.stringify(values, null, 2));
+      setSubmitting(false);
+    }, 1000);
+  },
+
+  displayName: "MyForm"
+})(MyForm);
+
+export default RegisterForm;

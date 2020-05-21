@@ -1,4 +1,5 @@
 @import "../../node_modules/antd/dist/antd.css";
+@import '../../node_modules/reset-css/reset.css';
 
 body,
 html,
@@ -6,4 +7,5 @@ html,
 .wrapper {
   height: 100%;
   color: #202020;
+  font-size: 14px;
 }

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Form, Input, Checkbox } from "antd";
+import { Form, Input } from "antd";
 import { Link } from "react-router-dom";
 import { Button, WhiteBlock } from "../../../components/index";
 
