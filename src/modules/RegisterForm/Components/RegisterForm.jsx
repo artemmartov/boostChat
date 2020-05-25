@@ -1,10 +1,11 @@
 import React from "react";
 import { withFormik } from "formik";
-
+import validateFunc from "../../../utils/validate";
 import { Form, Input } from "antd";
 import { ExclamationCircleTwoTone } from "@ant-design/icons";
 import { Link } from "react-router-dom";
 import { Button, WhiteBlock } from "../../../components/index";
+import { validateField } from "../../../utils/helpers/index";
 
 const layout = {
   labelCol: {
@@ -171,16 +172,15 @@ const tailLayout = {
 
 // export default MyForm;
 
-const MyForm = props => {
+const MyRegisterForm = props => {
   const {
     values,
     touched,
     errors,
     handleChange,
     handleBlur,
-	handleSubmit,
-	isValid,
-	dirty
+    handleSubmit,
+    isValid
   } = props;
   const success = true;
   return (
@@ -193,10 +193,8 @@ const MyForm = props => {
         {success ? (
           <Form {...layout} onSubmit={handleSubmit}>
             <Form.Item
-              validateStatus={
-                !touched.email ? "" : errors.email ? "error" : "Success"
-			  }
-			  help={ !touched.email ? null : errors.email }
+              validateStatus={validateField("email", "touched", "errors")}
+              help={!touched.email ? null : errors.email}
             >
               <Input
                 onChange={handleChange}
@@ -217,12 +215,10 @@ const MyForm = props => {
                 value={values.name}
               />
             </Form.Item>
- 
+
             <Form.Item
-              validateStatus={
-                !touched.password ? "" : errors.password ? "error" : "Success"
-			  }
-			  help={ !touched.password ? null : errors.password }
+              validateStatus={validateField("password", "touched", "errors")}
+              help={!touched.password ? null : errors.password}
             >
               <Input.Password
                 onChange={handleChange}
@@ -246,12 +242,11 @@ const MyForm = props => {
             </Form.Item>
 
             <Form.Item {...tailLayout}>
-				{!isValid && <span>Ошибка!</span>}
+              {!isValid && <span>Ошибка!</span>}
               <Button
                 onClick={handleSubmit}
-                type="submit"
-                className="button__large"
                 type="primary"
+                className="button__large"
                 size="large"
               >
                 Submit
@@ -291,31 +286,13 @@ const MyForm = props => {
 };
 
 const RegisterForm = withFormik({
-  mapPropsToValues: () => ({ name: "asdas" }),
-
-  // Custom sync validation
   validate: values => {
     const errors = {};
-    console.log("values", values);
+    const validate = validateFunc({ isAuth: false });
+    Object.keys(values).forEach(
+      key => validate[key] && validate[key](errors, values[key])
+    );
 
-    if (!values.email) {
-      errors.email = "Required";
-    } else if (
-      !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)
-    ) {
-      errors.email = "Invalid email address";
-    }
-
-    if (!values.password) {
-      errors.password = "Required";
-    } else if (!/^[a-zA-Z0-9]+$/i.test(values.password)) {
-      
-
-      console.log("ОШИБКА");
-
-	  errors.password = "Пароль должен содержать одну заглавную букву и цифру";
-	  console.log('BAD', errors );
-    }
     return errors;
   },
 
@@ -326,7 +303,7 @@ const RegisterForm = withFormik({
     }, 1000);
   },
 
-  displayName: "MyForm"
-})(MyForm);
+  displayName: "RegisterForm"
+})(MyRegisterForm);
 
 export default RegisterForm;
