@@ -1,5 +1,9 @@
-import React from "react";
+import React, { useState, useRef, useEffect } from "react";
 import "./Message.scss";
+import waves from "../../assets/img/waves.png";
+import pause from "../../assets/img/pause.png";
+import play from "../../assets/img/play.png";
+import { convertCurrentTime } from "../../utils/helpers/index";
 // import distanceInWordsToNow from "date-fns/formatDistanceToNow";
 // import ruLocale from "date-fns/locale/ru";
 import classNames from "classnames";
@@ -8,21 +12,108 @@ import classNames from "classnames";
 
 // import { Time, ReadedIcon } from "../index";
 
-export default function Message({
+// const Message = () => {
+//   return <div>asdas</div>;ƒ
+// };
+
+const MessageAudio = ({audioSrc}) => {
+  const audioElem = useRef(null);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [progress, setProgress] = useState(0);
+  const [currentTime, setCurrentTime] = useState(0);
+
+  const togglePlay = audioSrc
+    ? () => {
+        if (!isPlaying) {
+          audioElem.current.play();
+        } else {
+          audioElem.current.pause();
+        }
+      }
+    : null;
+
+  useEffect(() => {
+    audioElem.current.addEventListener(
+      "playing",
+      () => {
+        setIsPlaying(true);
+      },
+      false
+    );
+    audioElem.current.addEventListener(
+      "pause",
+      () => {
+        setIsPlaying(false);
+      },
+      false
+    );
+    audioElem.current.addEventListener(
+      "ended",
+      () => {
+        setIsPlaying(false);
+        setProgress(0);
+        setCurrentTime(0);
+      },
+      false
+    );
+
+    audioElem.current.addEventListener("timeupdate", () => {
+      const duration = (audioElem.current && audioElem.current.duration) || 0;
+      setCurrentTime(audioElem.current.currentTime);
+      setProgress(
+        (audioElem.current.currentTime / duration) * 100 + duration * 0.5
+      );
+    });
+  }, []);
+
+  return (
+    <div className="message__audio">
+      <audio ref={audioElem} src={audioSrc} preload="auto" />
+      <div
+        className="message__audio-progress"
+        style={{ width: progress + "%" }}
+      ></div>
+
+      <div className="message__audio-info">
+        <div className="message__audio-btn">
+          <button onClick={togglePlay}>
+            {!isPlaying ? (
+              <img src={play} alt="play" />
+            ) : (
+              <img src={pause} alt="pause" />
+            )}
+          </button>
+        </div>
+
+        <div className="message__audio-svg">
+          <img src={waves} alt="waves" />
+        </div>
+
+        <span className="message__audio-duration">
+          {convertCurrentTime(currentTime)}
+        </span>
+      </div>
+    </div>
+  );
+};
+
+const Message = ({
   avatar,
   text,
   date,
   user,
   isMe,
   isReaded,
+  audio,
   attachments,
   isTyping
-}) {
+}) => {
   return (
     <div
       className={classNames("message", {
         "message--isme": isMe,
         "message--is-typing": isTyping,
+        "message--is-audio": audio,
         "message--image": attachments && attachments.length === 1
       })}
     >
@@ -34,15 +125,15 @@ export default function Message({
           <div className="message__info">
             <div>
               <div className="message__bubble">
-                {text && <p className="message__text">{text}</p>}
+                {(audio || text) && <p className="message__text">{text}</p>}
+                {audio && <MessageAudio audioSrc={audio} />}
               </div>
+
               <div className="message__attachments">
-                {attachments &&
-                  attachments.map(el => (
-                    <div className="message__attachments-item">
-                      <img src={el.url} alt="img" />
-                    </div>
-                  ))}
+                <div className="message__attachments-item">
+                  {attachments &&
+                    attachments.map(el => <img src={el.url} alt="img" />)}
+                </div>
               </div>
               {date && (
                 <span className="message__date">
@@ -56,7 +147,7 @@ export default function Message({
             </div>
           </div>
         ) : (
-          <div class="message__typing">
+          <div className="message__typing">
             <span class="circle scaling"></span>
             <span class="circle scaling"></span>
             <span class="circle scaling"></span>
@@ -75,4 +166,6 @@ export default function Message({
       {/* <ReadedIcon isMe={true} isReaded={true} /> */}
     </div>
   );
-}
+};
+
+export default Message;

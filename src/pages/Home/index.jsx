@@ -1,54 +1,50 @@
 import React from "react";
-import { Message, DialogItem } from "../../components/index";
+import { Dialogs, Message } from "../../components/index";
 import "./Home.scss";
+
 
 export default function Home() {
   return (
     <section className="home">
-      <div className="dialogs">
-        <DialogItem
-          user={{
-            fullName: "ddd",
-            isOnline: false
-		  }}
-		  unReaded={0}
-        />
-      </div>
-      <div className="dialogs">
-        <DialogItem
-          user={{
-            fullName: "ddd",
-            isOnline: false
-		  }}
-		  unReaded={0}
-        />
-      </div>
-      <div className="dialogs">
-        <DialogItem
-          user={{
-            fullName: "ddd",
-            isOnline: false
-		  }}
-		  unReaded={0}
-        />
-      </div>
-
-      {/* <Dialogs
+      <Dialogs
+        userId={0}
         items={[
           {
+            _id: 'd95b2b8d46ebc680284bb1e90692f8d4',
+            text:
+              "Олежа, почему ты иногда такой жестокий? Почему малым дают такие большие сроки?",
+            isRead: false,
+            created_at: new Date(2020, 4, 25, 15, 3, 43),
             user: {
-              fullname: "Kizaru",
-              avatar: null
-            },
-            message: {
-              text:
-                "Олежа, почему ты иногда такой жестокий? Почему малым дают такие большие сроки?",
-              isRead: false,
-              created_at: new Date()
+              _id: 'd95b2b8d46ebc680284bb1e90692f8d4',
+              fullname: "RRR",
+              avatar: "https://steamuserimages-a.akamaihd.net/ugc/877502531188425463/6A76A26E96A2EB64C1BF9FD733BD051525C41FB6/",
+              isOnline: true
+            }
+          },
+
+          {
+            _id: Math.random(),
+            text: "буууу",
+            isRead: false,
+            created_at: new Date(2020, 4, 20, 15, 3, 43),
+            user: {
+              _id: 'd95b2b8d46ebc680284bb1e90692f8d4',
+              fullname: "UUU",
+              avatar: null,
+              isOnline: false
             }
           }
         ]}
-	  /> */}
+      />
+
+      <Message
+        avatar="https://peopletalk.ru/wp-content/uploads/2016/11/1480331127.jpg"
+        date={new Date(2020, 4, 20, 15, 1, 43)}
+        audio="https://notificationsounds.com/soundfiles/8ebda540cbcc4d7336496819a46a1b68/file-sounds-1153-piece-of-cake.mp3"
+      />
+
+     
 
       {/* <Message
         avatar="https://peopletalk.ru/wp-content/uploads/2016/11/1480331127.jpg"
