@@ -16,7 +16,7 @@ import classNames from "classnames";
 //   return <div>asdas</div>;ƒ
 // };
 
-const MessageAudio = ({audioSrc}) => {
+const MessageAudio = ({ audioSrc }) => {
   const audioElem = useRef(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [progress, setProgress] = useState(0);
@@ -132,7 +132,9 @@ const Message = ({
               <div className="message__attachments">
                 <div className="message__attachments-item">
                   {attachments &&
-                    attachments.map(el => <img src={el.url} alt="img" />)}
+                    attachments.map((el, i) => (
+                      <img key={i} src={el.url} alt="img" />
+                    ))}
                 </div>
               </div>
               {date && (
@@ -148,9 +150,9 @@ const Message = ({
           </div>
         ) : (
           <div className="message__typing">
-            <span class="circle scaling"></span>
-            <span class="circle scaling"></span>
-            <span class="circle scaling"></span>
+            <span className="circle scaling"></span>
+            <span className="circle scaling"></span>
+            <span className="circle scaling"></span>
           </div>
         )}
       </div>

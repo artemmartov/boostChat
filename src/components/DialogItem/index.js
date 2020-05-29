@@ -28,7 +28,7 @@ const DialogItem = ({ user, unReaded, isMe, created_at, text }) => {
       </div>
       <div className="dialogs__item-info">
         <div className="dialogs__item-info-top">
-          <b>Кизару Кизарович</b>
+          <b>{user.fullname}</b>
           <span>
             {/* <Time date={new Date(2020, 4, 20, 15, 3, 43)} /> */}
             {/* <Time date={message.created_at} /> */}

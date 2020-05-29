@@ -1,5 +1,11 @@
 @import "../../node_modules/antd/dist/antd.css";
-@import '../../node_modules/reset-css/reset.css';
+@import "../../node_modules/reset-css/reset.css";
+
+@import "./layouts//chat";
+
+body {
+  background-color: #f4f7fd;
+}
 
 body,
 html,
@@ -11,5 +17,24 @@ html,
 }
 
 * {
-	outline: none;
+  outline: none;
+}
+
+.ant-btn-circle {
+  border: 0;
+  box-shadow: none;
+  color: #202020 !important;
+  opacity: 0.4;
+  &:hover {
+    opacity: 1;
+  }
+  &:after {
+    display: none;
+  }
+}
+
+.anticon {
+  cursor: pointer;
+  font-size: 20px;
+  opacity: 0.5;
 }

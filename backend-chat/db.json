@@ -1,0 +1,127 @@
+{
+	"dialogs": [
+		{
+			"_id": "4d1bdf789056b6c200f8dbc3573ceb43",
+			"text": "<ReferenceError: Can't find variable: count>",
+			"created_at": "2000-03-15T05:20:10.123Z",
+			"isRead": false,
+			"user": {
+				"_id": "441bdf789056b6c200f8dbc3573ceb63",
+				"fullname": "Reid",
+				"avatar": null,
+				"isOnline": false
+			}
+		},
+		{
+			"_id": "4dhbdf789056b6c200f8dbc3573ceb93",
+			"text": "<ReferenceError: Can't find variable: count>",
+			"created_at": "2000-03-15T05:20:10.123Z",
+			"isRead": false,
+			"user": {
+				"_id": "4dfbdf789056b6c200f8dbc3573ceb03",
+				"fullname": "Reid",
+				"avatar": null,
+				"isOnline": false
+			}
+		},
+		{
+			"_id": "4dvbdf789056b6c200f8dbc3573ceb4v",
+			"text": "<ReferenceError: Can't find variable: count>",
+			"created_at": "2000-03-15T05:20:10.123Z",
+			"isRead": false,
+			"user": {
+				"_id": "kd1bdf789056b6c200f8dbc3573cebk3",
+				"fullname": "Reid",
+				"avatar": null,
+				"isOnline": false
+			}
+		},
+		{
+			"_id": "4g1bdf789056b6c200f8dbc3573ce943",
+			"text": "<ReferenceError: Can't find variable: count>",
+			"created_at": "2000-03-15T05:20:10.123Z",
+			"isRead": false,
+			"user": {
+				"_id": "4ddbdf789056b6c200f8dbc3573ceb43",
+				"fullname": "Reid",
+				"avatar": null,
+				"isOnline": false
+			}
+		}
+	],
+	"messages": [
+		{
+			"_id": "5ed0e876e26643e4f873e185",
+			"text": "Officia excepteur do exercitation aute sunt aute ut pariatur ea eu quis amet ut. Ut amet in velit proident ea pariatur duis culpa duis quis do fugiat. Lorem laborum nulla nulla qui ex laboris irure Lorem adipisicing officia duis eiusmod pariatur.",
+			"avatar": null,
+			"created_at": "Fri Jun 19 1981 10:48:47 GMT+0300 (MSK)",
+			"user": {
+				"id": "5ed0e876b126c0e6c4056509",
+				"fullname": " Wilkinson",
+				"avatar": null,
+				"isOnline": true
+			},
+			"dialog": "4d1bdf789056b6c200f8dbc3573ceb43"
+		},
+		{
+			"_id": "5ed0e876450c7060c68c9779",
+			"text": "Dolor Lorem ullamco laborum sit. Voluptate aute labore esse mollit ipsum occaecat aliquip commodo. Laborum excepteur irure culpa pariatur ullamco ipsum ullamco cupidatat consequat.",
+			"avatar": null,
+			"created_at": "Sun Aug 04 1996 08:25:09 GMT+0300 (MSK)",
+			"user": {
+				"id": "5ed0e876410b988eddedcc08",
+				"fullname": " Finley",
+				"avatar": null,
+				"isOnline": true
+			}
+		},
+		{
+			"_id": "5ed0e8768e9a28e0944ac0ec",
+			"text": "Minim esse dolor est ex quis. Lorem veniam duis ullamco non cillum elit consectetur aute labore in exercitation laboris. Minim deserunt ut non eu nulla proident dolore fugiat voluptate ea quis.",
+			"avatar": null,
+			"created_at": "Wed Aug 04 1999 04:32:19 GMT+0300 (MSK)",
+			"user": {
+				"id": "5ed0e8764aec26a1e8011192",
+				"fullname": " Cobb",
+				"avatar": null,
+				"isOnline": true
+			}
+		},
+		{
+			"_id": "5ed0e876f712287951544810",
+			"text": "Aute aliquip quis eiusmod excepteur qui est pariatur cupidatat Lorem et dolor adipisicing. Labore minim laborum ad culpa duis cupidatat. Aliqua est reprehenderit officia fugiat officia eiusmod laboris commodo ut culpa officia.",
+			"avatar": null,
+			"created_at": "Fri Mar 12 1976 12:11:10 GMT+0300 (MSK)",
+			"user": {
+				"id": "5ed0e876acec5abc7d4e04d3",
+				"fullname": " Burns",
+				"avatar": null,
+				"isOnline": false
+			}
+		},
+		{
+			"_id": "5ed0e8763b2e3975535e77ab",
+			"text": "Minim aliquip consequat aute consectetur pariatur ad commodo officia nostrud eiusmod minim. Incididunt anim reprehenderit deserunt sint officia consequat. Nisi sint aute anim do deserunt enim eu in non.",
+			"avatar": null,
+			"created_at": "Mon Aug 24 2015 00:31:37 GMT+0300 (MSK)",
+			"user": {
+				"id": "5ed0e8760ad315cde743acfc",
+				"fullname": " Haney",
+				"avatar": null,
+				"isOnline": false
+			}
+		},
+		{
+			"_id": "5ed0e87602d0453a5b66913e",
+			"text": "Ullamco cupidatat proident non consectetur culpa adipisicing Lorem cillum dolore. Fugiat laborum sunt ad duis culpa pariatur elit aliquip officia non commodo mollit aute. Qui magna mollit deserunt sint ullamco dolore magna laborum.",
+			"avatar": null,
+			"created_at": "Sun Sep 01 2019 15:25:55 GMT+0300 (MSK)",
+			"user": {
+				"id": "5ed0e876cdfd60cd7f80ff8a",
+				"fullname": " Shelton",
+				"avatar": null,
+				"isOnline": false
+			}
+		}
+	]
+}

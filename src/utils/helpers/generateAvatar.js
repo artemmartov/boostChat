@@ -16,9 +16,10 @@ export default hash => {
     .map(el => getCorrectIndex(el.charCodeAt(0)));
 
   return {
-    color: tinycolor({ r, g, b }).toHexString(),
+    color: tinycolor({ r, g, b }).lighten(15).saturate(20).toHexString(),
     colorLighten: tinycolor({ r, g, b })
-      .lighten()
+	  .lighten(40)
+	  .saturate(30)
       .toHexString()
   };
 };
