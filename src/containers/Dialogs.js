@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 
-import { DialogsActions } from "../redux/actions/index";
+import { dialogsActions } from "../redux/actions/index";
 import { Dialogs as BaseDialogs } from "../components/index";
 
-const Dialogs = ({ items, userId, fetchDialogs }) => {
+const Dialogs = ({ items, userId, fetchDialogs, setCurrentDialogId }) => {
   const [inputValue, setValue] = useState("");
-  const [filtred, setFiltred] = useState([...items]);
-  console.log("PROPS", fetchDialogs);
+  const [filtred, setFiltred] = useState(Array.from(items));
 
   const onChangeInput = value => {
     setFiltred(
@@ -21,9 +20,9 @@ const Dialogs = ({ items, userId, fetchDialogs }) => {
 
   useEffect(() => {
     if (!items.length) {
-      console.log("000");
-
       fetchDialogs();
+    } else {
+      setFiltred(items);
     }
   }, [items]);
 
@@ -33,8 +32,9 @@ const Dialogs = ({ items, userId, fetchDialogs }) => {
       items={filtred}
       onSearch={onChangeInput}
       inputValue={inputValue}
+      onSelectDialog={setCurrentDialogId}
     />
   );
 };
 
-export default connect(({ dialogs }) => dialogs, DialogsActions)(Dialogs);
+export default connect(({ dialogs }) => dialogs, dialogsActions)(Dialogs);

@@ -122,11 +122,13 @@
   &__avatar {
     display: flex;
     flex-direction: column-reverse;
-    img {
+    .avatar {
       width: 33px;
       height: 33px;
       border-radius: 50px;
-      margin-right: 13px;
+	  margin-right: 13px;
+	  font-size: 14px;
+	  line-height: 36px;
       margin-bottom: 23px;
       object-fit: cover;
     }

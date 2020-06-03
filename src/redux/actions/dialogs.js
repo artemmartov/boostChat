@@ -5,9 +5,12 @@ const actions = {
     type: "DIALOGS:SET_ITEMS",
     payload: items
   }),
+  setCurrentDialogId: id => ({
+    type: "DIALOGS:SET_CURRENT_DIALOG_ID",
+    payload: id
+  }),
   fetchDialogs: () => dispatch => {
     dialogsAPI.getAll().then(({ data }) => {
-      console.log(123);
       dispatch(actions.setDialogs(data));
     });
   }

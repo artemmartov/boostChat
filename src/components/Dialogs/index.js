@@ -2,13 +2,11 @@ import React from "react";
 import { DialogItem } from "../index";
 import orderBy from "lodash/orderBy";
 import isToday from "date-fns/isToday/index.js";
-import { Input, Empty } from "antd";
+import { Input, Empty} from "antd";
 
 import "./Dialogs.scss";
 
-const Dialogs = ({ items, userId, onSearch, inputValue }) => {
-  console.log("dddd", inputValue);
-
+const Dialogs = ({ items, userId, onSearch, inputValue, onSelectDialog }) => {	
   return (
     <div className="dialogs">
       <div className="dialogs-search">
@@ -21,6 +19,7 @@ const Dialogs = ({ items, userId, onSearch, inputValue }) => {
       {items.length ? (
         orderBy(items, ["created_at"], ["desc"]).map(elem => (
           <DialogItem
+            onSelect={onSelectDialog}
             key={elem._id}
             isMe={elem.user._id === userId}
             //   message={elem}

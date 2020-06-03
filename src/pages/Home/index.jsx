@@ -1,5 +1,5 @@
 import React from "react";
-import { Messages, Status, ChatInput } from "../../components/index";
+import { Status, ChatInput } from "../../components/index";
 import "./Home.scss";
 import { Button } from "antd";
 import {
@@ -9,7 +9,7 @@ import {
   SmileOutlined
 } from "@ant-design/icons";
 
-import { Dialogs } from "../../containers/index";
+import { Dialogs, Messages } from "../../containers/index";
 
 export default function Home() {
   return (
@@ -31,35 +31,8 @@ export default function Home() {
             <div className="dialogs">
               <Dialogs
                 userId={0}
-                items={[
-                  {
-                    _id: "d95b2b8d46ebc680284bb1e90692f8d4",
-                    text:
-                      "Олежа, почему ты иногда такой жестокий? Почему малым дают такие большие сроки?",
-                    isRead: false,
-                    created_at: new Date(2020, 4, 25, 15, 3, 43),
-                    user: {
-                      _id: "d95b2b8d46ebc680284bb1e90692f8d4",
-                      fullname: "RRR",
-                      avatar:
-                        "https://steamuserimages-a.akamaihd.net/ugc/877502531188425463/6A76A26E96A2EB64C1BF9FD733BD051525C41FB6/",
-                      isOnline: true
-                    }
-                  },
-
-                  {
-                    _id: Math.random(),
-                    text: "буууу",
-                    isRead: false,
-                    created_at: new Date(2020, 4, 20, 15, 3, 43),
-                    user: {
-                      _id: "d95b2b8d46ebc680284bb1e90692f8d4",
-                      fullname: "UUU",
-                      avatar: null,
-                      isOnline: false
-                    }
-                  }
-                ]}
+                // items={}
+			
               />
             </div>
           </div>

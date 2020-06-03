@@ -10,7 +10,7 @@ import classNames from "classnames";
 // import checked from "../../assets/img/checked.svg";
 // import sended from "../../assets/img/sended.png";
 
-// import { Time, ReadedIcon } from "../index";
+import { Avatar } from "../index";
 
 // const Message = () => {
 //   return <div>asdas</div>;ƒ
@@ -98,7 +98,6 @@ const MessageAudio = ({ audioSrc }) => {
 };
 
 const Message = ({
-  avatar,
   text,
   date,
   user,
@@ -108,6 +107,7 @@ const Message = ({
   attachments,
   isTyping
 }) => {
+
   return (
     <div
       className={classNames("message", {
@@ -119,7 +119,9 @@ const Message = ({
     >
       <div className="message__content">
         <div className="message__avatar">
-          <img src={avatar} alt={user} />
+		  <Avatar user={user} />
+	
+          {/* <img src={user.avatar} alt={user} /> */}
         </div>
         {!isTyping ? (
           <div className="message__info">
