@@ -1,5 +1,5 @@
 const express = require("express");
-import { UserModel } from "../schemas/index";
+import { UserModel } from "../models/index";
 
 class UserController {
   show(req: any, res: any) {

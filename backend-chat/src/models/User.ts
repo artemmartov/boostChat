@@ -1,7 +1,7 @@
 // const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
+// const Schema = mongoose.Schema;
 // const Document = mongoose.Document;
-import mongoose, { Document } from 'mongoose';
+import mongoose, { Document, Schema } from 'mongoose';
 const validator = require("validator");
 
 
